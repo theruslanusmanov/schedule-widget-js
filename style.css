@@ -84,3 +84,16 @@ span {
     height: 100%;
     background-color: white;
 }
+
+.schedule-container__info {
+    padding: 4px 12px;
+    margin-top: 24px;
+    width: 80px;
+    height: 25px;
+    background-color: black;
+    border: 1px solid var(--separator-accent-color);
+    border-radius: 4px;
+    font-size: 12pt;
+    display: flex;
+    align-items: center;
+}
