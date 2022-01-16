@@ -9,6 +9,14 @@ function trackRulerCursor (rulerId) {
   const ruler = document.getElementById(rulerId);
   const rect = ruler.getBoundingClientRect();
 
+  ruler.addEventListener('mouseenter', () => {
+    cursor.style.display = 'block';
+  })
+
+  ruler.addEventListener('mouseleave', () => {
+    cursor.style.display = 'none';
+  })
+
   ruler.addEventListener('mousemove', event => {
     const position = event.clientX - rect.left;
 
