@@ -23,6 +23,7 @@ body {
 }
 
 .schedule-calendar-container {
+    margin-top: 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

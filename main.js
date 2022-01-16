@@ -1,4 +1,4 @@
-import { END_HOURS, START_HOURS, trackRulerCursor } from './modules/calendar.js'
+import { END_HOURS, START_HOURS, trackRulerCursor } from './src/calendar.js'
 
 // Add hours blocks in calendar ruler
 const hoursFragment = document.createDocumentFragment();
