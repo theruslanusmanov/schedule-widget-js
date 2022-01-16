@@ -1,0 +1,45 @@
+:root {
+    --background-color: #18191b;
+    --island-background-color: #202021;
+    --separator-accent-color: rgba(255, 255, 255, 0.15);
+    --text-color: #f2f2f2;
+    --secondary-text-color: #8f9499;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("/assets/fonts/Inter/Inter-VariableFont_slnt,wght.ttf") format("ttf")
+}
+
+html {
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    padding: 24px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 15px;
+}
+
+.schedule-calendar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 382px;
+    height: 91px;
+    border: 1px solid var(--separator-accent-color);
+    border-radius: 4px;
+    background-color: var(--island-background-color);
+}
+
+span {
+    color: var(--secondary-text-color);
+}
+
+.schedule-calendar__line {
+    height: 29px;
+    width: 100%;
+    background-color: var(--secondary-text-color);
+}
