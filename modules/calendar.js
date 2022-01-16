@@ -4,17 +4,21 @@ const START_HOURS = 0
 const END_HOURS = 24
 
 function trackRulerCursor (rulerId) {
-  const cursor = document.getElementById('cursor')
+  const cursor = document.getElementById('cursor');
+  const info = document.getElementsByClassName(
+    'schedule-container__info')[0];
 
   const ruler = document.getElementById(rulerId)
   const rect = ruler.getBoundingClientRect()
 
   ruler.addEventListener('mouseenter', () => {
-    cursor.style.display = 'block'
+    cursor.style.display = 'block';
+    info.style.visibility = 'visible';
   })
 
   ruler.addEventListener('mouseleave', () => {
-    cursor.style.display = 'none'
+    cursor.style.display = 'none';
+    info.style.visibility = 'hidden';
   })
 
   ruler.addEventListener('mousemove', event => {
@@ -34,8 +38,6 @@ function trackRulerCursor (rulerId) {
       })
       const time = `${hours}:${minutes}`
 
-      const info = document.getElementsByClassName(
-        'schedule-container__info')[0]
       info.innerHTML = time
     }
   })

@@ -86,6 +86,7 @@ span {
 }
 
 .schedule-container__info {
+    visibility: hidden;
     padding: 4px 12px;
     margin-top: 24px;
     width: 80px;
