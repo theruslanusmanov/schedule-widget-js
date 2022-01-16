@@ -5,16 +5,22 @@ const END_HOURS = 21;
 
 function trackRulerCursor (rulerId) {
   const cursor = document.getElementById('cursor');
-  const ruler = document.getElementById(rulerId);
 
-  ruler.addEventListener('mousemove', (event) => {
-    let rect = event.target.getBoundingClientRect();
+  const ruler = document.getElementById(rulerId);
+  const rect = ruler.getBoundingClientRect();
+
+  ruler.addEventListener('mousemove', event => {
     const position = event.clientX - rect.left;
 
     if (position > 0) {
       cursor.style.transform = `translateX(${position}px)`
     }
   });
+
+  ruler.addEventListener('click', event => {
+    const position = event.clientX - rect.left;
+    console.log(`${Math.floor((position / rect.width) * 100)}%`);
+  })
 }
 
 export {

@@ -62,7 +62,22 @@ span {
     pointer-events: none;
 }
 
+.schedule-calendar__ruler__rest-time {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(22, 125, 255, 0.2);
+}
+
 #cursor {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.current_cursor {
     position: absolute;
     width: 1px;
     height: 100%;
