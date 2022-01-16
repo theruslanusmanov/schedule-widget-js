@@ -1,3 +1,3 @@
-import { hello } from './modules/calendar.js'
+import { trackRulerCursor } from './modules/calendar.js'
 
-hello();
+trackRulerCursor('rulerId');

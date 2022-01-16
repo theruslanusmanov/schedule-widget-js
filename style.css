@@ -38,8 +38,15 @@ span {
     color: var(--secondary-text-color);
 }
 
-.schedule-calendar__line {
+.schedule-calendar__ruler {
     height: 29px;
     width: 100%;
     background-color: var(--secondary-text-color);
+    cursor: pointer;
+}
+
+#cursor {
+    width: 1px;
+    height: 100%;
+    background-color: white;
 }
