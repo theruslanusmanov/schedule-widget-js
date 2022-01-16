@@ -39,13 +39,31 @@ span {
 }
 
 .schedule-calendar__ruler {
+    position: relative;
     height: 29px;
     width: 100%;
-    background-color: var(--secondary-text-color);
     cursor: pointer;
 }
 
+.schedule-calendar__ruler__hours {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    list-style: none;
+    display: flex;
+    width: 100%;
+    gap: 1px;
+}
+
+.schedule-calendar__ruler__hours li {
+    background-color: var(--secondary-text-color);
+    flex: 1;
+    pointer-events: none;
+}
+
 #cursor {
+    position: absolute;
     width: 1px;
     height: 100%;
     background-color: white;
