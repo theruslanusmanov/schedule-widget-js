@@ -1,6 +1,7 @@
 export const name = 'calendar'
 
-const HOURS = 14;
+const START_HOURS = 7;
+const END_HOURS = 21;
 
 function trackRulerCursor (rulerId) {
   const cursor = document.getElementById('cursor');
@@ -13,10 +14,11 @@ function trackRulerCursor (rulerId) {
     if (position > 0) {
       cursor.style.transform = `translateX(${position}px)`
     }
-  })
+  });
 }
 
 export {
   trackRulerCursor,
-  HOURS
+  START_HOURS,
+  END_HOURS
 }
