@@ -1,6 +1,6 @@
-import { END_HOURS, START_HOURS, trackRulerCursor } from './src/calendar.js'
+import  './src/calendar.js'
 
-// Add hours blocks in calendar ruler
+/*// Add hours blocks in calendar ruler
 const hoursFragment = document.createDocumentFragment();
 const hours = document.getElementsByClassName(
   'schedule-calendar__ruler__hours')[0]
@@ -8,9 +8,9 @@ for (let i = 0; i < END_HOURS - START_HOURS; i++) {
   const li = document.createElement('li')
   hoursFragment.append(li)
 }
-hours.append(hoursFragment);
+hours.append(hoursFragment);*/
 
-// Add current time cursor
+/*// Add current time cursor
 const ruler = document.getElementById('rulerId')
 const cursor = document.createElement('div')
 cursor.classList.add('current_cursor')
@@ -39,6 +39,6 @@ function setCursorPositionOnRuler () {
   const restTimeMask = document.getElementsByClassName(
     'schedule-calendar__ruler__rest-time')[0]
   restTimeMask.style.width = `${rect.width - cursorPosition}px`
-}
+}*/
 
-trackRulerCursor('rulerId')
+/*trackRulerCursor('rulerId')*/
