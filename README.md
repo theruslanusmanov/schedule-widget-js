@@ -1,4 +1,4 @@
-# Schedule Calendar JS
+# Schedule widget
 *Work in progress*
 
 Implementation of JetBrains Space schedule calendar widget.
