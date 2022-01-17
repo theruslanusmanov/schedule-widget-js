@@ -109,42 +109,42 @@ customElements.define('schedule-calendar', class Calendar extends HTMLElement {
     // Add hours blocks in calendar ruler
     const hoursFragment = document.createDocumentFragment();
     const hours = this.shadowRoot.querySelectorAll(
-      '.schedule-calendar__ruler__hours')[0]
+      '.schedule-calendar__ruler__hours')[0];
     for (let i = 0; i < END_HOURS - START_HOURS; i++) {
-      const li = document.createElement('li')
-      hoursFragment.append(li)
+      const li = document.createElement('li');
+      hoursFragment.append(li);
     }
     hours.append(hoursFragment);
 
     // Add current time cursor
-    const ruler = this.shadowRoot.getElementById('rulerId')
-    const cursorEl = document.createElement('div')
-    cursorEl.classList.add('current_cursor')
-    ruler.append(cursorEl)
-    const rect = ruler.getBoundingClientRect()
-    cursorEl.style.transform = `translateX(${rect.width / 2}px)`
+    const ruler = this.shadowRoot.getElementById('rulerId');
+    const cursorEl = document.createElement('div');
+    cursorEl.classList.add('current_cursor');
+    ruler.append(cursorEl);
+    const rect = ruler.getBoundingClientRect();
+    cursorEl.style.transform = `translateX(${rect.width / 2}px)`;
 
     const setCursorPositionOnRuler = () => {
       // Set mask for the rest of time
-      const currentDate = new Date()
-      const currentHours = currentDate.getHours()
-      const currentMinutes = currentDate.getMinutes()
+      const currentDate = new Date();
+      const currentHours = currentDate.getHours();
+      const currentMinutes = currentDate.getMinutes();
 
-      const oneHour = rect.width / (END_HOURS - START_HOURS)
-      const oneMinute = (rect.width / (END_HOURS - START_HOURS)) / 60
+      const oneHour = rect.width / (END_HOURS - START_HOURS);
+      const oneMinute = (rect.width / (END_HOURS - START_HOURS)) / 60;
       const cursorPosition = (currentHours - START_HOURS) * oneHour +
-        currentMinutes * oneMinute
+        currentMinutes * oneMinute;
 
-      cursorEl.style.transform = `translateX(${cursorPosition}px)`
+      cursorEl.style.transform = `translateX(${cursorPosition}px)`;
 
       const restTimeMask = this.shadowRoot.querySelectorAll(
-        '.schedule-calendar__ruler__rest-time')[0]
-      restTimeMask.style.width = `${rect.width - cursorPosition}px`
-    }
+        '.schedule-calendar__ruler__rest-time')[0];
+      restTimeMask.style.width = `${rect.width - cursorPosition}px`;
+    };
 
-    setCursorPositionOnRuler()
+    setCursorPositionOnRuler();
     setInterval(() => {
-      setCursorPositionOnRuler()
+      setCursorPositionOnRuler();
     }, 1000 * 60);
 
     const cursor = this.shadowRoot.getElementById('cursor');
@@ -173,9 +173,10 @@ customElements.define('schedule-calendar', class Calendar extends HTMLElement {
           // Calculate time
           const percentage = position / rect.width;
           const oneHour = rect.width / (END_HOURS - START_HOURS);
-          const hours = (Math.floor(position / oneHour)).toLocaleString('en-US', {
-            minimumIntegerDigits: 2,
-          });
+          const hours = (Math.floor(position / oneHour)).toLocaleString('en-US',
+            {
+              minimumIntegerDigits: 2,
+            });
           const minutes = (Math.floor(
             ((position / oneHour) % 1).toString().split('.')[1]?.substr(0, 2) *
             0.6)).toLocaleString('en-US', {
@@ -191,9 +192,9 @@ customElements.define('schedule-calendar', class Calendar extends HTMLElement {
         const position = event.clientX - rect.left;
         console.log(`${Math.floor((position / rect.width) * 100)}%`);
       });
-    }
+    };
 
-    trackRulerCursor('rulerId')
+    trackRulerCursor('rulerId');
   }
 });
 
