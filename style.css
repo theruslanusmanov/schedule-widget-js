@@ -35,3 +35,28 @@ body {
     display: flex;
     align-items: center;
 }
+
+.date {
+    padding: 4px 12px;
+    background-color: black;
+    border: 1px solid var(--separator-accent-color);
+    border-radius: 4px;
+    width: fit-content;
+}
+
+.wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.wrapper h3 {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 382px;
+}
