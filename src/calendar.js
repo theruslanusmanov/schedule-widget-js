@@ -10,7 +10,8 @@ template.innerHTML = `
       justify-content: space-around;
       align-items: center;
       width: 382px;
-      height: 91px;
+      box-sizing: border-box;
+      padding: 16px 0;
       border: 1px solid var(--separator-accent-color);
       border-radius: 4px;
       background-color: var(--island-background-color);
@@ -85,7 +86,7 @@ template.innerHTML = `
       position: absolute;
       width: 20px;
       height: 100%;
-      background-color: rgb(22, 125, 255);;
+      background-color: rgb(22, 125, 255);
       left: 20px;
     }
     
@@ -100,6 +101,7 @@ template.innerHTML = `
     .schedule-calendar__events li {
       display: flex;
       justify-content: space-between;
+      margin-top: 16px;
     }
     
     .schedule-calendar__events li span {
@@ -118,7 +120,7 @@ template.innerHTML = `
       <div id="cursor"></div>
       <div class="schedule-calendar__event"></div>
     </div>
-    <ul class="schedule-calendar__events">
+    <ul class="schedule-calendar__events" id="events">
       <li><span>Nothing Scheduled</span></li>
       <li>
         <span>Event</span>
@@ -151,6 +153,8 @@ customElements.define('schedule-calendar', class Calendar extends HTMLElement {
     ruler.append(cursorEl);
     const rect = ruler.getBoundingClientRect();
     cursorEl.style.transform = `translateX(${rect.width / 2}px)`;
+
+    const oneHour = rect.width / (END_HOURS - START_HOURS);
 
     const setCursorPositionOnRuler = () => {
       // Set mask for the rest of time
@@ -195,12 +199,9 @@ customElements.define('schedule-calendar', class Calendar extends HTMLElement {
         cursor.style.transform = `translateX(${position}px)`;
 
         // Calculate time
-        const percentage = position / rect.width;
-        const oneHour = rect.width / (END_HOURS - START_HOURS);
-        const hours = (Math.floor(position / oneHour)).toLocaleString('en-US',
-          {
-            minimumIntegerDigits: 2,
-          });
+        const hours = (Math.floor(position / oneHour)).toLocaleString('en-US', {
+          minimumIntegerDigits: 2,
+        });
         const minutes = (Math.floor(
           ((position / oneHour) % 1).toString().split('.')[1]?.substr(0, 2) *
           0.6)).toLocaleString('en-US', {
@@ -212,7 +213,13 @@ customElements.define('schedule-calendar', class Calendar extends HTMLElement {
 
     ruler.addEventListener('click', event => {
       const position = event.clientX - rect.left;
-      console.log(`${Math.floor((position / rect.width) * 100)}%`);
+      const hour = (Math.floor(position / oneHour)).toLocaleString('en-US', {
+        minimumIntegerDigits: 2,
+      });
+      const eventsElement = this.shadowRoot.getElementById('events');
+      const li = document.createElement('li');
+      li.innerHTML = `<span>Event</span><span>${hour}:00 - ${+hour + 1}:00</span>`
+      eventsElement.append(li)
     });
   }
 });
