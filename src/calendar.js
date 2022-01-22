@@ -82,9 +82,19 @@ template.innerHTML = `
       align-items: center;
     }
     
-    .schedule-calendar__event {
+    .schedule-calendar__timeline {
+      display: flex;
       position: absolute;
-      width: 20px;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    
+    .schedule-calendar__timeline li {
+      position: absolute;
+      width: 1px;
       height: 100%;
       background-color: rgb(22, 125, 255);
       left: 20px;
@@ -118,19 +128,21 @@ template.innerHTML = `
       <ul class="schedule-calendar__ruler__hours"></ul>
       <div class="schedule-calendar__ruler__rest-time"></div>
       <div id="cursor"></div>
-      <div class="schedule-calendar__event"></div>
+      <ul class="schedule-calendar__timeline" id="timeline">
+        <li class="schedule-calendar__timeline__event"></li>
+      </ul>
     </div>
     <ul class="schedule-calendar__events" id="events">
-      <li><span>Nothing Scheduled</span></li>
-      <li>
-        <span>Event</span>
-        <span>14:00 - 14:30</span>
-      </li>
+      <li id="no-events-title"><span>Nothing Scheduled</span></li>
     </ul>
   </div>
 `;
 
 customElements.define('schedule-calendar', class Calendar extends HTMLElement {
+  events = [
+    /* {hour: 12, title: 'Event 1'},*/
+  ];
+
   constructor() {
     super();
     this.attachShadow({mode: 'open'});
@@ -155,6 +167,8 @@ customElements.define('schedule-calendar', class Calendar extends HTMLElement {
     cursorEl.style.transform = `translateX(${rect.width / 2}px)`;
 
     const oneHour = rect.width / (END_HOURS - START_HOURS);
+
+    this.updateTimeline(oneHour);
 
     const setCursorPositionOnRuler = () => {
       // Set mask for the rest of time
@@ -212,15 +226,44 @@ customElements.define('schedule-calendar', class Calendar extends HTMLElement {
     });
 
     ruler.addEventListener('click', event => {
+      const noEventsTitleElement = this.shadowRoot.getElementById(
+        'no-events-title');
+      if (noEventsTitleElement) noEventsTitleElement.remove();
+
       const position = event.clientX - rect.left;
       const hour = (Math.floor(position / oneHour)).toLocaleString('en-US', {
         minimumIntegerDigits: 2,
       });
+
       const eventsElement = this.shadowRoot.getElementById('events');
       const li = document.createElement('li');
-      li.innerHTML = `<span>Event</span><span>${hour}:00 - ${+hour + 1}:00</span>`
-      eventsElement.append(li)
+      li.innerHTML = `
+        <span>Event</span>
+        <span>${hour}:00 - ${+hour + 1}:00</span>
+      `;
+      eventsElement.append(li);
+
+      this.events.push({hour, event: 'event'});
+      this.updateTimeline(oneHour);
     });
+  }
+
+  /**
+   * Updates timeline view.
+   */
+  updateTimeline(oneHour) {
+    const events = this.events;
+    const timeline = this.shadowRoot.getElementById('timeline');
+    timeline.innerHTML = '';
+
+    const fragment = document.createDocumentFragment();
+    for (let i = 0; i < events.length; i++) {
+      const li = document.createElement('li');
+      li.style.width = `${oneHour}px`;
+      li.style.left = `${events[i].hour * oneHour}px`;
+      fragment.append(li);
+    }
+    timeline.append(fragment);
   }
 });
 
