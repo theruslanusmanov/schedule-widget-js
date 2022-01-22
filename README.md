@@ -1,5 +1,6 @@
 # Schedule widget
-*Work in progress*
+
+[See demo.](https://theruslanusmanov.github.io/schedule-widget-js/)
 
 ## Description
 
