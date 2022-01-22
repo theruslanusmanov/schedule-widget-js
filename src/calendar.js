@@ -21,72 +21,94 @@ template.innerHTML = `
     }
     
     .schedule-calendar__ruler {
-        position: relative;
-        height: 29px;
-        width: 100%;
-        cursor: pointer;
+      position: relative;
+      height: 29px;
+      width: 100%;
+      cursor: pointer;
     }
     
     .schedule-calendar__ruler__hours {
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        position: absolute;
-        list-style: none;
-        display: flex;
-        width: 100%;
-        gap: 1px;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      position: absolute;
+      list-style: none;
+      display: flex;
+      width: 100%;
+      gap: 1px;
     }
     
     .schedule-calendar__ruler__hours li {
-        background-color: rgb(56, 59, 62);
-        flex: 1;
-        pointer-events: none;
+      background-color: rgb(56, 59, 62);
+      flex: 1;
+      pointer-events: none;
     }
     
     .schedule-calendar__ruler__rest-time {
-        position: absolute;
-        right: 0;
-        width: 50%;
-        height: 100%;
-        background-color: rgba(22, 125, 255, 0.2);
+      position: absolute;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background-color: rgba(22, 125, 255, 0.2);
     }
     
     #cursor {
-        display: none;
-        position: absolute;
-        width: 1px;
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0.5);
+      display: none;
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.5);
     }
     
     .current_cursor {
-        position: absolute;
-        width: 1px;
-        height: 100%;
-        background-color: white;
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background-color: white;
     }
     
     .schedule-container__info {
-        visibility: hidden;
-        padding: 4px 12px;
-        margin-top: 24px;
-        width: 80px;
-        height: 25px;
-        background-color: black;
-        border: 1px solid var(--separator-accent-color);
-        border-radius: 4px;
-        font-size: 12pt;
-        display: flex;
-        align-items: center;
+      visibility: hidden;
+      padding: 4px 12px;
+      margin-top: 24px;
+      width: 80px;
+      height: 25px;
+      background-color: black;
+      border: 1px solid var(--separator-accent-color);
+      border-radius: 4px;
+      font-size: 12pt;
+      display: flex;
+      align-items: center;
     }
     
     .schedule-calendar__event {
-        position: absolute;
-        width: 20px;
-        height: 100%;
-        background-color: rgb(22, 125, 255);;
-        left: 20px;
+      position: absolute;
+      width: 20px;
+      height: 100%;
+      background-color: rgb(22, 125, 255);;
+      left: 20px;
+    }
+    
+    .schedule-calendar__events {
+      box-sizing: border-box;
+      list-style: none;
+      padding: 0 16px;
+      margin: 0;
+      width: 100%;
+    }
+    
+    .schedule-calendar__events li {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .schedule-calendar__events li span {
+      display: flex;
+    }
+    
+    .schedule-calendar__events li span:only-child {
+      width: 100%;
+      justify-content: center;
     }
   </style>
   <div class="schedule-calendar">
@@ -96,7 +118,13 @@ template.innerHTML = `
       <div id="cursor"></div>
       <div class="schedule-calendar__event"></div>
     </div>
-    <span>Nothing Scheduled</span>
+    <ul class="schedule-calendar__events">
+      <li><span>Nothing Scheduled</span></li>
+      <li>
+        <span>Event</span>
+        <span>14:00 - 14:30</span>
+      </li>
+    </ul>
   </div>
 `;
 
